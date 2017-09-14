@@ -2,7 +2,11 @@
 * Raphael SVG Import Classic Copyright (c) 2015 Chris Chang, Ingvar Stepanyan
 * Original Raphael SVG Import Copyright (c) 2009 Wout Fierens
 * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
-*
+
+++ 2017-09-02 devleechanho 
+  1. 이미지 요소 생성이 안되는 문제 수정
+  2. rect 요소를 백그라운드로 설정했을시 문제점 개선
+  3. matrix transformation 반영 안되는 문제 수정
 */
 
 if (!Raphael && require){
@@ -64,6 +68,7 @@ Raphael.fn.importSVG = function (svgXML, options) {
           }
         }
         var thisGroup = this.set();
+        // rect 요소를 백그라운드로 설정시 i = 1 부터 아닐경우 0 부터
         for (i = 1, n = elShape.childNodes.length; i < n; i++) {
           thisGroup.push(this.parseElement(elShape.childNodes.item(i)));
         }
